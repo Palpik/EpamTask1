@@ -7,27 +7,38 @@ using System.Threading.Tasks;
 
 namespace Task1
 {
-    class Gallery
+    public class Gallery
     {
-        public Storeroom storeroom;
-        public Dictionary<int,Hall> halls = new Dictionary<int,Hall>();
-        public Dictionary<Painting, History> history = new Dictionary<Painting, History>();
+        private Storeroom _storeroom;
+        private Dictionary<int,Hall> _halls = new Dictionary<int,Hall>();
+        private Dictionary<Painting, History> _history = new Dictionary<Painting, History>();
+        public Storeroom Storeroom => _storeroom;
+        public Dictionary<int, Hall> Halls => _halls;
+        public Dictionary<Painting, History> History => _history;
+
+
+        public Gallery()
+        {
+            _storeroom = new Storeroom();
+        }
         public Gallery(IEnumerable<Painting> list)
         {
-            storeroom = new Storeroom(list);
+            _storeroom = new Storeroom(list);
         }
         public void ExhebitTo(int paintingNum, Hall hall, int placeNum)
         {
-            if (paintingNum >= storeroom.Paintings.Count)
+            if (paintingNum >= Storeroom.Paintings.Count)
                 throw new IndexOutOfRangeException();
             if (hall.Places.ContainsKey(placeNum))
             {
-                storeroom.Paintings.Add(hall.Places[placeNum]);
-                history[hall.Places[placeNum]].EndExhibit();
+                Storeroom.Paintings.Add(hall.Places[placeNum]);
+                History[hall.Places[placeNum]].EndExhibit();
             }
-            hall.Places[placeNum] = storeroom.Paintings[paintingNum];
-            history[storeroom.Paintings[paintingNum]].StartExhibit();
-            storeroom.Paintings.RemoveAt(paintingNum);
+            hall.Places[placeNum] = Storeroom.Paintings[paintingNum];
+            if (!History.ContainsKey(Storeroom.Paintings[paintingNum]))
+                History[Storeroom.Paintings[paintingNum]] = new History();
+            History[Storeroom.Paintings[paintingNum]].StartExhibit();
+            Storeroom.Paintings.RemoveAt(paintingNum);
         }
         public void Move(Hall hall1, int placeNum1, Hall hall2, int placeNum2)
         {
@@ -35,25 +46,25 @@ namespace Task1
                 throw new IndexOutOfRangeException();
             if (hall2.Places.ContainsKey(placeNum2) )
             {
-                storeroom.Paintings.Add(hall2.Places[placeNum2]);
-                history[hall2.Places[placeNum2]].EndExhibit();
+                Storeroom.Paintings.Add(hall2.Places[placeNum2]);
+                History[hall2.Places[placeNum2]].EndExhibit();
             }
             hall2.Places[placeNum2] = hall1.Places[placeNum1];
-            history[hall2.Places[placeNum2]].StartExhibit();
+            History[hall2.Places[placeNum2]].StartExhibit();
             hall1.Places.Remove(placeNum1);
         }
-        public void InStoreroom(Hall hall, int placeNum)
+        public void ToStoreroom(Hall hall, int placeNum)
         {
             if(hall.Places.ContainsKey(placeNum) == false)
                 throw new IndexOutOfRangeException();
-            storeroom.Paintings.Add(hall.Places[placeNum]);
-            history[hall.Places[placeNum]].EndExhibit();
+            Storeroom.Paintings.Add(hall.Places[placeNum]);
+            History[hall.Places[placeNum]].EndExhibit();
             hall.Places.Remove(placeNum);
         }
         public override string ToString()
         {
-            string tostring = storeroom.ToString();
-            foreach (Hall hall in halls.Values)
+            string tostring = Storeroom.ToString();
+            foreach (Hall hall in Halls.Values)
                 tostring += hall.ToString();
             return tostring;
         }
@@ -61,7 +72,7 @@ namespace Task1
         {
             return this.ToString().GetHashCode();
         }
-        public override bool Equals(object? obj)
+        public override bool Equals(object obj)
         {
             if(obj is Gallery gallery)
                 return this.ToString().Equals(gallery.ToString());
