@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Task1
 {
+    /// <summary>
+    /// A class of Gallery. Contains storeroom, halls and history for all exhibited paintings 
+    /// </summary>
     public class Gallery
     {
         private Storeroom _storeroom;
@@ -25,6 +28,13 @@ namespace Task1
         {
             _storeroom = new Storeroom(list);
         }
+        /// <summary>
+        /// Method places given Painting in given hall and place and saves history of exhibitions.
+        /// If there are painting in given place of hall moves it in storeroom.  
+        /// </summary>
+        /// <param name="paintingNum">index of Painting in storeroom</param>
+        /// <param name="hall"></param>
+        /// <param name="placeNum">number of place</param>
         public void ExhebitTo(int paintingNum, Hall hall, int placeNum)
         {
             if (paintingNum >= Storeroom.Paintings.Count)
@@ -40,6 +50,15 @@ namespace Task1
             History[Storeroom.Paintings[paintingNum]].StartExhibit();
             Storeroom.Paintings.RemoveAt(paintingNum);
         }
+
+        /// <summary>
+        /// Method moves given Painting in given hall and place and saves history of exhibitions.
+        /// If there are painting in given place of hall moves it in storeroom.  
+        /// </summary>
+        /// <param name="hall1"></param>
+        /// <param name="placeNum1"></param>
+        /// <param name="hall2"></param>
+        /// <param name="placeNum2"></param>
         public void Move(Hall hall1, int placeNum1, Hall hall2, int placeNum2)
         {
             if (hall1.Places.ContainsKey(placeNum1) == false)
@@ -53,6 +72,11 @@ namespace Task1
             History[hall2.Places[placeNum2]].StartExhibit();
             hall1.Places.Remove(placeNum1);
         }
+        /// <summary>
+        /// Method moves given Painting in storeroom and saves history of exhibitions.
+        /// </summary>
+        /// <param name="hall"></param>
+        /// <param name="placeNum"></param>
         public void ToStoreroom(Hall hall, int placeNum)
         {
             if(hall.Places.ContainsKey(placeNum) == false)

@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 
 namespace Task1
 {
+    /// <summary>
+    /// Class of the painting
+    /// Сontains information about the name, genre, author and year of creation
+    /// Implements the isSimilarTo method of the IsSimilar interface. 
+    /// If the fields completely match returns 4.
+    /// </summary>
     public class Painting : ISimilarable<Painting>
     {
         public string Name { get; }
@@ -19,6 +25,13 @@ namespace Task1
             Author = author;
             Year = year;
         }
+        /// <summary>
+        /// Method counts field matches this painting with another.
+        /// If there are no matches returns 0.
+        /// Max score 4. This score means That paintings are equal.
+        /// </summary>
+        /// <param name="painting">painting for comparing</param>
+        /// <returns>returns count of field matches</returns>
         public virtual int IsSimilarTo(Painting painting)
         {
             if (painting is null)

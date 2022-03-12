@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace Task1
 {
+    /// <summary>
+    /// A basic abstract class for using a list of paintings.
+    /// Implements painting search methods
+    /// </summary>
     public abstract class PaintingList
     {
         public abstract List<Painting> Paintings { get; }
@@ -27,7 +31,7 @@ namespace Task1
         }
         public List<Painting> Find(Painting painting)
         {
-            return Paintings.FindAll(delegate (Painting p) { return painting.IsSimilarTo(p) > 0; });
+            return Paintings.FindAll(delegate (Painting p) { return p.IsSimilarTo(painting) > 0; });
         }
     }
 }

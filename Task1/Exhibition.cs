@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Task1
 {
+    /// <summary>
+    /// Contains info about the start and the end of exhibiton
+    /// </summary>
     public class Exhibition
     {
         public DateTime? Start { get; set; }

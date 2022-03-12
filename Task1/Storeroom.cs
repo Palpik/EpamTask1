@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Task1
 {
+    /// <summary>
+    /// A class describing the storerooms and inheriting from PaintingList
+    /// </summary>
     public class Storeroom : PaintingList
     {
         private List<Painting> _paintings;

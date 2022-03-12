@@ -18,6 +18,10 @@ namespace Task1
             });
         }
     }
+    /// <summary>
+    /// Extended painting inherited class Painting and supplemented with information
+    /// about technic.
+    /// </summary>
     public class ExtPainting : Painting
     {
         public string Technic { get; }
@@ -25,6 +29,14 @@ namespace Task1
         {
             Technic = technic;
         }
+        /// <summary>
+        /// Method counts field matches this painting with another.
+        /// If there are no matches returns 0.
+        /// Max score 5. This score means That paintings are equal.
+        /// </summary>
+        /// <param name="painting">painting for comparing</param>
+        /// <returns>returns count of field matches</returns>
+        /// <returns></returns>
         public override int IsSimilarTo(Painting painting)
         {
             int score = base.IsSimilarTo(painting);

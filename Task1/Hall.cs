@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Task1
 {
+    /// <summary>
+    /// A class describing Gallery halls for exhibitions.
+    /// </summary>
     public class Hall : PaintingList
     {
         private Dictionary<int, Painting> _places;

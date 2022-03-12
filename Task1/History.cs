@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Task1
 {
-    
+    /// <summary>
+    /// Contains list of exhibitions info
+    /// </summary>
     public class History
     {
         public List<Exhibition> Exhibitions { get; }
@@ -16,6 +18,10 @@ namespace Task1
             get { return _isGoingExhibit; }
             set { _isGoingExhibit = value; }
         }
+        /// <summary>
+        /// открывает новую выставку
+        /// Если выставка идет закрывает её и открывает новую
+        /// </summary>
         public void StartExhibit()
         {
             if (IsGoingExhibit)
@@ -23,23 +29,36 @@ namespace Task1
             Exhibitions.Add(new Exhibition(DateTime.Now));
             IsGoingExhibit = true;
         }
-        public void StartExhibit(DateTime time)
+
+        /// <summary>
+        /// открывает новую выставку на заданную дату.
+        /// Если выставка идет закрывает её и открывает новую
+        /// </summary>
+        /// <param name="time"></param>
+        public void StartExhibit(DateTime date)
         {
             if (IsGoingExhibit)
-                Exhibitions[^1].End = time;
-            Exhibitions.Add(new Exhibition(time));
+                Exhibitions[^1].End = date;
+            Exhibitions.Add(new Exhibition(date));
             IsGoingExhibit = true;
         }
+        /// <summary>
+        /// Если идет выставка закрывает её
+        /// </summary>
         public void EndExhibit()
         {
             if (IsGoingExhibit == true)
                 Exhibitions[^1].End = DateTime.Now;
             IsGoingExhibit = false;
         }
-        public void EndExhibit(DateTime time)
+        /// <summary>
+        /// Если идет выставвка закрывает её на заданную дату
+        /// </summary>
+        /// <param name="date"></param>
+        public void EndExhibit(DateTime date)
         {
             if (IsGoingExhibit == true)
-                Exhibitions[^1].End = time;
+                Exhibitions[^1].End = date;
             IsGoingExhibit = false;
         }
         public History()
