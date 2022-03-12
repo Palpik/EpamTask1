@@ -6,6 +6,18 @@ using System.Threading.Tasks;
 
 namespace Task1
 {
+    public static class PaintingListExtension
+    {
+        public static List<Painting> FindByTechnic(this PaintingList pl, string technic)
+        {
+            return pl.Paintings.FindAll(delegate (Painting p) 
+            { 
+                if(p is ExtPainting ep)
+                    return ep.Technic == technic;
+                return false;
+            });
+        }
+    }
     public class ExtPainting : Painting
     {
         public string Technic { get; }
