@@ -6,14 +6,6 @@ using System.Threading.Tasks;
 
 namespace Task1
 {
-    public interface ISimilarable
-    {
-        public int IsSimilarTo(object obj);
-    }
-    public interface ISimilarable<T>
-    {
-        public int IsSimilarTo(T obj);
-    }
     public class Painting : ISimilarable<Painting>
     {
         public string Name { get; }
@@ -54,38 +46,6 @@ namespace Task1
                 if(Name.Equals(p.Name) && Genre.Equals(p.Genre) && Author.Equals(p.Author) && Year.Equals(p.Year))
                     return true;
             }
-            return false;
-        }
-    }
-    public class ExtPainting : Painting
-    { 
-        public string Technic { get; }
-        public ExtPainting(string name, string genre, string author, int year, string technic) : base(name,genre,author,year)
-        {
-            Technic = technic;
-        }
-        public override int IsSimilarTo(Painting painting)
-        {
-            int score = base.IsSimilarTo(painting);
-            if (painting is ExtPainting extpainting)
-            {
-                score += Technic == extpainting.Technic ? 1 : 0;
-                return score;
-            }
-            return score;
-        }
-        public override string ToString()
-        {
-            return $"[{Name};{Genre};{Author};{Year};{Technic}]";
-        }
-        public override int GetHashCode()
-        {
-             return (Name + Genre + Author + Year.ToString() + Technic).GetHashCode();
-        }
-        public override bool Equals(object obj)
-        {
-            if (obj is ExtPainting extPainting)
-                return base.Equals(extPainting) && extPainting.Technic == Technic;
             return false;
         }
     }
