@@ -66,7 +66,6 @@ namespace Task1.Tests
                 new Painting("Name1", "Genre0", "Author1", 2)});
             CollectionAssert.AreEqual(expected, st.FindByYear(2));
         }
-        
         [TestMethod()]
         public void ToStringTest()
         {

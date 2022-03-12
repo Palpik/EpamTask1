@@ -23,17 +23,17 @@ namespace Task1
         {
             string tostring = "";
             foreach (int i in Places.Keys)
-                tostring = $"{i} - {Places[i]}\n";
+                tostring += $"{i} - {Places[i]}\n";
             return tostring;
         }
         public override int GetHashCode()
         {
-            return Places.GetHashCode();
+            return ToString().GetHashCode();
         }
         public override bool Equals(object obj)
         {
             if(obj is Hall hall)
-                return Places.Equals(hall.Places);
+                return ToString().Equals(hall.ToString());
             return false;
         }
     }
