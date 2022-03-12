@@ -8,30 +8,23 @@ namespace Task1
 {
     public class Hall : PaintingList
     {
-        Dictionary<int, Painting> places = new Dictionary<int, Painting>();
-        public override List<Painting> Paintings
-        {
-            get
-            {
-                return places.Values.ToList();
-            }
-        }
-        public Dictionary<int, Painting> Places
-        {
-            get
-            {
-                return Places;
-            }
-        }
+        private Dictionary<int, Painting> _places;
+        public Dictionary<int, Painting> Places => _places;
+        public override List<Painting> Paintings => Places.Values.ToList();
         public Hall()
-        { }
+        {
+            _places = new Dictionary<int, Painting>();
+        }
         public Hall(Dictionary<int, Painting> dict)
         {
-            places = new Dictionary<int, Painting>(dict);
+            _places = new Dictionary<int, Painting>(dict);
         }
         public override string ToString()
         {
-            return Places.ToString();
+            string tostring = "";
+            foreach (int i in Places.Keys)
+                tostring = $"{i} - {Places[i]}\n";
+            return tostring;
         }
         public override int GetHashCode()
         {

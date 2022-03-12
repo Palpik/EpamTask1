@@ -8,7 +8,7 @@ namespace Task1
 {
     public class Storeroom : PaintingList
     {
-        private List<Painting> _paintings = new List<Painting>();
+        private List<Painting> _paintings;
         public override List<Painting> Paintings
         {
             get
@@ -16,7 +16,10 @@ namespace Task1
                 return _paintings;
             }
         }
-        public Storeroom() { }
+        public Storeroom()
+        {
+            _paintings = new List<Painting>();
+        }
         public Storeroom(IEnumerable<Painting> paintings)
         {
             _paintings = new List<Painting>(paintings);
@@ -24,16 +27,19 @@ namespace Task1
         
         public override string ToString()
         {
-            return Paintings.ToString();
+            string tostring = "";
+            foreach (Painting p in Paintings)
+                tostring += p.ToString() + "\n";
+            return tostring;
         }
         public override int GetHashCode()
         {
-            return Paintings.GetHashCode();
+            return ToString().GetHashCode();
         }
         public override bool Equals(object obj)
         {
-            if (obj is Storeroom sroom)
-                return Paintings.Equals(sroom.Paintings);
+            if (obj is Storeroom storeroom)
+                return ToString().Equals(storeroom.ToString());
             return false;
         }
     }

@@ -45,7 +45,7 @@ namespace Task1.Tests
             story.StartExhibit(new DateTime(2022, 12, 3));
             story.StartExhibit(new DateTime(2022, 12, 3));
             story.EndExhibit(new DateTime(2022,12,3));
-            string expectedToString = "03.12 .2022 - 03.12.2022\n03.12.2022 - 03.12.2022\n";
+            string expectedToString = "03.12.2022 - 03.12.2022\n03.12.2022 - 03.12.2022\n";
             Assert.AreEqual(expectedToString, story.ToString());
         }
 
