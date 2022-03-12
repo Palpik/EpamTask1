@@ -28,7 +28,7 @@ namespace Task1.Tests
         }
 
         [TestMethod()]
-        public void EqualsTest_EqualsObjects_True()
+        public void EqualsTest_EqualentObjects_True()
         {
             Exhibition exhibition = new Exhibition(new DateTime(2022, 03, 12), new DateTime(2022, 03, 13));
             Exhibition equalExhibiton = new Exhibition(new DateTime(2022, 03, 12), new DateTime(2022, 03, 13));
@@ -36,7 +36,7 @@ namespace Task1.Tests
         }
 
         [TestMethod()]
-        public void EqualsTest_DifferentObjects_False()
+        public void EqualsTest_DifferentObjects_EqualHashCode()
         {
             Exhibition exhibition = new Exhibition(new DateTime(2022, 03, 12), new DateTime(2022, 03, 13));
             Exhibition differentExhibiton = new Exhibition(new DateTime(2022, 03, 12), new DateTime(2022, 03, 12));
@@ -44,19 +44,11 @@ namespace Task1.Tests
         }
 
         [TestMethod()]
-        public void GetHashCodeTest_EqualsObjects_True()
+        public void GetHashCodeTest_EqualentObjects_EqualHashCode()
         {
             Exhibition exhibition = new Exhibition(new DateTime(2022, 03, 12), new DateTime(2022, 03, 13));
             Exhibition equalExhibiton = new Exhibition(new DateTime(2022, 03, 12), new DateTime(2022, 03, 13));
             Assert.IsTrue(exhibition.GetHashCode() == equalExhibiton.GetHashCode());
-        }
-        
-        [TestMethod()]
-        public void GetHashCodeTest_DifferentObjects_False()
-        {
-            Exhibition exhibition = new Exhibition(new DateTime(2022, 03, 12), new DateTime(2022, 03, 13));
-            Exhibition differentExhibiton = new Exhibition(new DateTime(2022, 03, 12), new DateTime(2022, 03, 12));
-            Assert.IsFalse(exhibition.GetHashCode() == differentExhibiton.GetHashCode());
         }
     }
 }
